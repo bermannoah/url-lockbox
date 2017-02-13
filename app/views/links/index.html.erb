@@ -15,7 +15,6 @@
   <% end %>
 </div>
 
-
 <div class="col-12">
   <div class="list_of_links">
     <table class="col-4 table table-striped table-hover links-table">
@@ -28,15 +27,14 @@
       </thead>
       <tbody>
         <% @links.each do |link| %>
-        <tr>
+        <tr class="link">
           <td><%= link.title %></td>
           <td><%= link_to link.url, link.url %></td>
-          <td><div class="form-group">
-            <label class="form-switch">
-              <input type="checkbox" />
-              <i class="form-icon", id="<%= link.title.parameterize %>-switch"></i> <%= read_status(link) %>
-            </label>
-          </div></td>
+          <% if read_status(link) %>
+            <td class="link"><button class="btn read-status", id="<%= link.title.parameterize %>-switch">Mark as Read (Currently: <%= read_status(link) %>)</button></td>
+          <% else %>
+            <td class="link"><button class="btn read-status", id="<%= link.title.parameterize %>-switch">Mark as Unread (Currently: <%= read_status(link) %>)</button></td>
+          <% end %>
         </tr>
         <% end %>
     </tbody>

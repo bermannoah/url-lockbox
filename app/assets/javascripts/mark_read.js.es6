@@ -9,7 +9,7 @@ function markAsRead(e) {
   var linkId = $link.data('link-id');
 
   $.ajax({
-    type: "PATCH",
+    type: "PUT",
     url: "/api/v1/links/" + linkId,
     data: { read: true },
   }).then(updateLinkStatus)
