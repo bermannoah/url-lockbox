@@ -29,7 +29,7 @@
         <% @links.each do |link| %>
         <tr class="link">
           <td><%= link.title %></td>
-          <td><%= link_to link.url, link.url %></td>
+          <td><%= link_to link.url, link.url, target: "_blank" %></td>
           <% if read_status(link) %>
             <td class="link"><button class="btn read-status", id="<%= link.title.parameterize %>-switch">Mark as Read (Currently: <%= read_status(link) %>)</button></td>
           <% else %>

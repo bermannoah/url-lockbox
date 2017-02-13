@@ -38,6 +38,24 @@ describe "seeing a form for links" do
       expect(Link.count).to eq(1)
     end
 
+    scenario "and submits a link that can be clicked" do
+      user = Fabricate(:user)
+      stub_logged_in_user(user)
+
+      visit "/links"
+      
+      expect(Link.count).to eq(0)
+      
+      fill_in "link[url]", with: "http://www.google.com"
+      fill_in "link[title]", with: "Cool!"
+      
+      click_on "Submit"
+      
+      expect(Link.count).to eq(1)
+      expect(page).to have_link('http://www.google.com', href: 'http://www.google.com')
+      expect(find_link('http://www.google.com')[:target]).to eq('_blank')
+    end
+
     scenario "and submits a link without a title" do
       user = Fabricate(:user)
       stub_logged_in_user(user)
