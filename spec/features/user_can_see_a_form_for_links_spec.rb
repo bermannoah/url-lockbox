@@ -37,5 +37,26 @@ describe "seeing a form for links" do
       
       expect(Link.count).to eq(1)
     end
+
+    scenario "and sees the link on the links page" do
+      user = Fabricate(:user)
+      stub_logged_in_user(user)
+
+      visit "/links"
+      
+      expect(Link.count).to eq(0)
+      expect(page).to_not have_content("Cool!")
+      link = Fabricate.build(:link)
+      
+      fill_in "link[url]", with: link.url
+      fill_in "link[title]", with: link.title
+      
+      click_on "Submit"
+
+      expect(Link.count).to eq(1)
+      expect(page).to have_content(link.title)
+      expect(page).to have_content(link.url)
+      expect(page).to have_content("Unread")
+    end
   end
 end

@@ -14,3 +14,27 @@
 
   <% end %>
 </div>
+
+
+<div class="col-6">
+  <div class="list_of_links">
+    <table class="col-4 table table-striped table-hover links-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>URL</th>
+          <th>Read or Unread</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @links.each do |link| %>
+        <tr>
+          <td><%= link.title %></td>
+          <td><%= link.url %></td>
+          <td><%= read_status(link) %></td>
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
+  </div>  
+</div>
