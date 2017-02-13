@@ -38,6 +38,22 @@ describe "seeing a form for links" do
       expect(Link.count).to eq(1)
     end
 
+    scenario "and submits a link without a title" do
+      user = Fabricate(:user)
+      stub_logged_in_user(user)
+
+      visit "/links"
+      
+      expect(Link.count).to eq(0)
+      
+      fill_in "link[url]", with: "http://www.google.com"
+      
+      click_on "Submit"
+      
+      expect(Link.count).to eq(0)
+      expect(page).to have_content("You've saved the URL incorrectly. Try again?")
+    end
+
     scenario "and submits an invalid link" do
       user = Fabricate(:user)
       stub_logged_in_user(user)
@@ -52,7 +68,58 @@ describe "seeing a form for links" do
       click_on "Submit"
       
       expect(Link.count).to eq(0)
-      expect(page).to have_content("You've entered the URL incorrectly. Try again?")
+      expect(page).to have_content("You've saved the URL incorrectly. Try again?")
+    end
+
+    scenario "and submits a more subtly invalid link" do
+      user = Fabricate(:user)
+      stub_logged_in_user(user)
+
+      visit "/links"
+      
+      expect(Link.count).to eq(0)
+      
+      fill_in "link[url]", with: "http://linksaresogood"
+      fill_in "link[title]", with: "Cool!"
+      
+      click_on "Submit"
+      
+      expect(Link.count).to eq(0)
+      expect(page).to have_content("You've saved the URL incorrectly. Try again?")
+    end
+
+    scenario "and submits a valid but unorthodox link" do
+      user = Fabricate(:user)
+      stub_logged_in_user(user)
+
+      visit "/links"
+      
+      expect(Link.count).to eq(0)
+      
+      fill_in "link[url]", with: "http://hello.world.com"
+      fill_in "link[title]", with: "Cool!"
+      
+      click_on "Submit"
+      
+      expect(Link.count).to eq(1)
+      expect(page).to have_content("http://hello.world.com")
+    end
+
+    scenario "and submits a valid but unusual link" do
+      user = Fabricate(:user)
+      stub_logged_in_user(user)
+
+      visit "/links"
+      
+      expect(Link.count).to eq(0)
+      
+      fill_in "link[url]", with: "https://hello.world.co.uk"
+      fill_in "link[title]", with: "Cool!"
+      
+      click_on "Submit"
+      
+      expect(Link.count).to eq(1)
+      expect(page).to have_content("https://hello.world.co.uk")
     end
 
     scenario "and sees the link on the links page" do
@@ -73,7 +140,7 @@ describe "seeing a form for links" do
       expect(Link.count).to eq(1)
       expect(page).to have_content(link.title)
       expect(page).to have_content(link.url)
-      expect(page).to have_content("Unread")
+      expect(page).to have_content("False")
     end
 
     scenario "and sees multiple links on the links page" do
@@ -93,7 +160,7 @@ describe "seeing a form for links" do
       expect(page).to have_content(link_3.url)
       expect(page).to have_content(link_4.url)
       expect(page).to have_content(link_5.url)
-      expect(page).to have_content("Unread")
+      expect(page).to have_content("False")
     end
 
     scenario "and sees only their own links on links page" do

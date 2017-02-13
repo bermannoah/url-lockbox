@@ -7,7 +7,7 @@ class LinksController < ApplicationController
       redirect_to '/'
       flash[:notice] = "Link #{link["title"]} Saved!"
     else
-      flash[:notice] = "You've entered the URL incorrectly. Try again?"
+      flash[:notice] = "You've saved the URL incorrectly. Try again?"
     end
   end
   

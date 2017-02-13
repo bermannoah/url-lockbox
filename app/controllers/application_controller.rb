@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
   
   def read_status(link)
     if link.read
-      "Read"
+      "True"
     else
-      "Unread"
+      "False"
     end
   end
   
