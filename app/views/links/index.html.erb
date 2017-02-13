@@ -1,3 +1,16 @@
 <% if flash[:notice] %>
     <div class="toast"><%= flash[:notice] %></div>
 <% end %>
+
+<h3>Add a link here!</h3>
+
+<div class="col-6">
+  <%= form_for :link, class: "form-group", url: '/links' do |f| %>
+
+    Url: <%= f.text_field :url, class: "form-input" %>
+    Title: <%= f.text_field :title, class: "form-input" %>
+    <br/>
+    <%= f.submit "Submit", class: "btn" %>
+
+  <% end %>
+</div>

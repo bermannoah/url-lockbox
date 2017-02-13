@@ -18,7 +18,8 @@ describe "seeing a form for links" do
       visit "/links"
       
       expect(page).to have_content("Add a link here")
-      expect(page).to have_content("Submit")
+      expect(page).to have_content("Url:")
+      expect(page).to have_button("Submit")
     end
   end
 end
