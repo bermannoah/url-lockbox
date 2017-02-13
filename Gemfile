@@ -17,6 +17,7 @@ gem 'sprockets-es6'
 gem 'bcrypt', '~> 3.1.7'
 gem 'figaro'
 gem 'faraday'
+gem 'validate_url'
 # gem 'unicorn'
 
 # gem 'capistrano-rails', group: :development
