@@ -22,7 +22,6 @@ gem 'faraday'
 # gem 'capistrano-rails', group: :development
 group :development do
   gem 'web-console', '~> 2.0'
-  gem 'better_errors'
 end
 
 group :development, :test do
@@ -38,8 +37,5 @@ group :development, :test do
   gem 'fabrication'
   gem 'shoulda-matchers'
   gem 'poltergeist'
-end
-
-group :production do
-  gem 'rails_12factor', group: :production
+  gem 'faker'
 end
