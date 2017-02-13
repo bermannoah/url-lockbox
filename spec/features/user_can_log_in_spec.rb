@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "the user logs in" do
   scenario "correctly" do
-    user = Fabricate(:user, email: "cool@cool.com", password: "123456")
+    user = Fabricate(:user, email: "hey@example.com", password: "123456")
 
     visit "/"
     
@@ -19,7 +19,7 @@ describe "the user logs in" do
     fill_in "password", with: user.password
     
     click_on "Submit"
-    
+
     expect(page).to have_content("Welcome! You've successfully logged in.")
     expect(page).to have_content("Logout")
   end

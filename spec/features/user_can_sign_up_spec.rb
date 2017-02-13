@@ -17,7 +17,7 @@ describe "user can sign up" do
     expect(page).to have_content("Signup")
     expect(page).to have_content("Login")
     
-    fill_in "user[email]", with: "cool@cool.com"
+    fill_in "user[email]", with: "hey@example.com"
     fill_in "user[password]", with: "123456"
     fill_in "user[password_confirmation]", with: "123456"
     

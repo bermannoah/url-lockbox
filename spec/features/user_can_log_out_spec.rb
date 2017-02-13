@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "the user logs out" do
   scenario "correctly" do
-    user = Fabricate(:user, email: "cool@cool.com", password: "123456")
+    user = Fabricate(:user, email: "hey@example.com", password: "123456")
 
     visit "/"
     
