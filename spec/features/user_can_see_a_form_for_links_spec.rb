@@ -181,7 +181,34 @@ describe "seeing a form for links" do
       expect(page).to_not have_content(link_3.title)
       expect(page).to have_content(link_4.title)
       expect(page).to have_content(link_5.title)
-      expect(page).to have_content("Unread")
+      expect(page).to have_content("False")
+    end
+
+    scenario "and sees the correct status when a link's status is changed" do
+      user_1 = Fabricate(:user)
+      user_2 = Fabricate(:user, email: "roflmao@google.com")
+      link_1 = Fabricate(:link, user_id: user_1.id, title: "lol")
+      link_2 = Fabricate(:link, user_id: user_2.id, title: "roflmao")
+      link_3 = Fabricate(:link, user_id: user_2.id, title: "idk my bff jill")
+      link_4 = Fabricate(:link, user_id: user_1.id, title: "zombotron")
+      link_5 = Fabricate(:link, user_id: user_1.id, title: "badger")
+      stub_logged_in_user(user_1)
+
+      visit "/links"
+      
+      expect(Link.count).to eq(5)
+      expect(page).to have_content(link_1.title)
+      expect(page).to_not have_content(link_2.title)
+      expect(page).to_not have_content(link_3.title)
+      expect(page).to have_content(link_4.title)
+      expect(page).to have_content(link_5.title)
+      expect(page).to_not have_content("True")
+      
+      link_1.read = "True"
+      link_1.save
+      
+      visit "/links"
+      expect(page).to have_content("True")
     end
 
   end
