@@ -1,0 +1,18 @@
+{
+  "name": "url-lockbox",
+  "version": "1.0.0",
+  "description": "## MidModule Assessment",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bermannoah/url-lockbox.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bermannoah/url-lockbox/issues"
+  },
+  "homepage": "https://github.com/bermannoah/url-lockbox#readme"
+}
