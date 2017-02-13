@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "can mark links as read", :js => :true do
-  scenario "Mark a link as read" do
+  xscenario "Mark a link as read" do
     Link.create(url:"https://turing.io", title:"Turing")
     visit "/"
     within('.link .read-status') do
