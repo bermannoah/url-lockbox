@@ -1,3 +1,3 @@
 class LinksController < ApplicationController
-  before_filter :authorize
+  before_action :authorize
 end

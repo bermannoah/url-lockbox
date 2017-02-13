@@ -1,4 +1,9 @@
 <h1>Signup for URL-Lockbox!</h1>
+
+<% if flash[:notice] %>
+    <div class="toast"><%= flash[:notice] %></div>
+<% end %>
+
 <div class="col-6">
   <%= form_for :user, class: "form-group", url: '/users' do |f| %>
 
