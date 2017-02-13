@@ -10,3 +10,12 @@
   font-weight: bold;
   font-size: 2rem !important;
 }
+
+.unauth-text {
+  text-align: center;
+}
+
+.unauth-link {
+  font-size: 3rem !important;
+  font-weight: bold;
+}

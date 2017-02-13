@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   
   get '/signup', to: 'users#new'
   post '/users', to: 'users#create'
+  get '/home', to: 'users#unauthenticated'
   
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
