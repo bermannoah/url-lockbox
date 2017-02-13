@@ -7,6 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header class="navbar">
+      <section class="navbar-section">
+          <a href="#" class="navbar-brand">
+              <i class="icon icon-pages"></i> URL-Lockbox
+          </a>
+          <% if current_user %>
+            <a href="/logout" class="btn btn-link user-status">Logout</a>
+          <% else %>
+            <a href="/login" class="btn btn-link user-status">Login</a>
+            <a href="/signup" class="btn btn-link user-status">Sign Up</a>
+          <% end %>
+      </section>
+  </header>
 <div class="container">
   <%= yield %>
 </div>

@@ -48,4 +48,36 @@ describe "flash messages" do
     expect(page).to have_content("Whoops, you entered something incorrectly. Try again?")
   end
 
+  scenario "when the user incorrectly logs in" do
+    user = Fabricate(:user, email: "cool@cool.com", password: "123456")
+
+    visit "/signup"
+    
+    fill_in "user[email]", with: "cool@cool.com"
+    fill_in "user[password]", with: "123456"
+    
+    click_on "Submit"
+    
+    expect(page).to have_content("Whoops, you entered something incorrectly. Try again?")
+  end
+  
+  scenario "when the user correctly logs out" do
+    user = Fabricate(:user, email: "cool@cool.com", password: "123456")
+
+    visit "/login"
+    
+    expect(page).to have_content("Email:")
+    expect(page).to have_content("Password:")
+    expect(page).to have_button("Submit")
+    
+    fill_in "email", with: user.email
+    fill_in "password", with: user.password
+    
+    click_on "Submit"
+    
+    click_on "Logout"
+    expect(page).to have_content("You have logged out!")
+  end
+
+
 end
