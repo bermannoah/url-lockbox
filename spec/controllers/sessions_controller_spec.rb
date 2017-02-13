@@ -5,7 +5,7 @@ describe SessionsController, type: :controller do
     scenario "it redirects to the right place" do
       get :new
       
-      expect(response).to have_http_status(302)
+      expect(response).to have_http_status(200)
     end
   end
   
