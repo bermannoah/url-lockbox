@@ -1,10 +1,12 @@
 <h1>Signup for URL-Lockbox!</h1>
+<div class="col-6">
+  <%= form_for :user, class: "form-group", url: '/users' do |f| %>
 
-<%= form_for :user, url: '/users' do |f| %>
+    Email: <%= f.text_field :email, class: "form-input" %>
+    Password: <%= f.password_field :password, class: "form-input" %>
+    Password Confirmation: <%= f.password_field :password_confirmation, class: "form-input" %>
+    <br/>
+    <%= f.submit "Submit", class: "btn" %>
 
-  Email: <%= f.text_field :email %>
-  Password: <%= f.password_field :password %>
-  Password Confirmation: <%= f.password_field :password_confirmation %>
-  <%= f.submit "Submit" %>
-
-<% end %>
+  <% end %>
+</div>
