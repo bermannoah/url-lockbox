@@ -45,8 +45,8 @@ describe "seeing a form for links" do
       visit "/links"
       
       expect(Link.count).to eq(0)
-      expect(page).to_not have_content("Cool!")
       link = Fabricate.build(:link)
+      expect(page).to_not have_content(link.title)
       
       fill_in "link[url]", with: link.url
       fill_in "link[title]", with: link.title
@@ -56,6 +56,26 @@ describe "seeing a form for links" do
       expect(Link.count).to eq(1)
       expect(page).to have_content(link.title)
       expect(page).to have_content(link.url)
+      expect(page).to have_content("Unread")
+    end
+
+    scenario "and sees multiple links on the links page" do
+      user = Fabricate(:user)
+      link_1 = Fabricate(:link, user_id: user.id)
+      link_2 = Fabricate(:link, user_id: user.id)
+      link_3 = Fabricate(:link, user_id: user.id)
+      link_4 = Fabricate(:link, user_id: user.id)
+      link_5 = Fabricate(:link, user_id: user.id)
+      stub_logged_in_user(user)
+
+      visit "/links"
+      
+      expect(Link.count).to eq(5)
+      expect(page).to have_content(link_1.title)
+      expect(page).to have_content(link_2.url)
+      expect(page).to have_content(link_3.url)
+      expect(page).to have_content(link_4.url)
+      expect(page).to have_content(link_5.url)
       expect(page).to have_content("Unread")
     end
   end

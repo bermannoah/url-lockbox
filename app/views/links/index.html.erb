@@ -30,7 +30,7 @@
         <% @links.each do |link| %>
         <tr>
           <td><%= link.title %></td>
-          <td><%= link.url %></td>
+          <td><%= link_to link.url, link.url %></td>
           <td><%= read_status(link) %></td>
         </tr>
         <% end %>
