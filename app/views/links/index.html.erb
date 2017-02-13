@@ -16,14 +16,14 @@
 </div>
 
 
-<div class="col-6">
+<div class="col-12">
   <div class="list_of_links">
     <table class="col-4 table table-striped table-hover links-table">
       <thead>
         <tr>
           <th>Title</th>
           <th>URL</th>
-          <th>Read or Unread</th>
+          <th>Read (T) or Unread (F)</th>
         </tr>
       </thead>
       <tbody>
@@ -31,7 +31,12 @@
         <tr>
           <td><%= link.title %></td>
           <td><%= link_to link.url, link.url %></td>
-          <td><%= read_status(link) %></td>
+          <td><div class="form-group">
+            <label class="form-switch">
+              <input type="checkbox" />
+              <i class="form-icon", id="<%= link.title.parameterize %>-switch"></i> <%= read_status(link) %>
+            </label>
+          </div></td>
         </tr>
         <% end %>
     </tbody>

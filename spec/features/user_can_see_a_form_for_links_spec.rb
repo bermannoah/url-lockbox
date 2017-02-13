@@ -129,7 +129,7 @@ describe "seeing a form for links" do
       visit "/links"
       
       expect(Link.count).to eq(0)
-      link = Fabricate.build(:link)
+      link = Fabricate.build(:link, title: "good")
       expect(page).to_not have_content(link.title)
       
       fill_in "link[url]", with: link.url
@@ -141,13 +141,15 @@ describe "seeing a form for links" do
       expect(page).to have_content(link.title)
       expect(page).to have_content(link.url)
       expect(page).to have_content("False")
+      expect(page).to have_css("#good-switch")
+      
     end
 
     scenario "and sees multiple links on the links page" do
       user = Fabricate(:user)
-      link_1 = Fabricate(:link, user_id: user.id)
-      link_2 = Fabricate(:link, user_id: user.id)
-      link_3 = Fabricate(:link, user_id: user.id)
+      link_1 = Fabricate(:link, user_id: user.id, title: "great")
+      link_2 = Fabricate(:link, user_id: user.id, title: "awesome")
+      link_3 = Fabricate(:link, user_id: user.id, title: "really good")
       link_4 = Fabricate(:link, user_id: user.id)
       link_5 = Fabricate(:link, user_id: user.id)
       stub_logged_in_user(user)
@@ -160,6 +162,9 @@ describe "seeing a form for links" do
       expect(page).to have_content(link_3.url)
       expect(page).to have_content(link_4.url)
       expect(page).to have_content(link_5.url)
+      expect(page).to have_css("#great-switch")
+      expect(page).to have_css("#awesome-switch")
+      expect(page).to have_css("#really-good-switch")
       expect(page).to have_content("False")
     end
 
