@@ -27,13 +27,13 @@
       </thead>
       <tbody>
         <% @links.each do |link| %>
-        <tr class="link">
+        <tr class="link", id="<%= link.id %>">
           <td><%= link.title %></td>
           <td><%= link_to link.url, link.url, target: "_blank" %></td>
           <% if read_status(link) %>
-            <td class="link"><button class="btn read-status", id="<%= link.title.parameterize %>-switch">Mark as Read (Currently: <%= read_status(link) %>)</button></td>
+            <td class="link"><button class="btn read-status mark-as-read", id="<%= link.title.parameterize %>-switch">Mark as Read (Currently: <%= read_status(link) %>)</button></td>
           <% else %>
-            <td class="link"><button class="btn read-status", id="<%= link.title.parameterize %>-switch">Mark as Unread (Currently: <%= read_status(link) %>)</button></td>
+            <td class="link"><button class="btn read-status mark-as-read", id="<%= link.title.parameterize %>-switch">Mark as Unread (Currently: <%= read_status(link) %>)</button></td>
           <% end %>
         </tr>
         <% end %>
