@@ -1,0 +1,29 @@
+.navbar-brand {
+  margin-left: 10px;
+  font-size: 3rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+.user-status {
+  float: right;
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 2rem !important;
+}
+
+.unauth-text {
+  text-align: center;
+}
+
+.unauth-link {
+  font-size: 3rem !important;
+  font-weight: bold;
+}
+
+.link {
+  
+}
+
+.read-status {
+  
+}

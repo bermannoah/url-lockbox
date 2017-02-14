@@ -1,0 +1,17 @@
+<h1>Login</h1>
+
+<% if flash[:notice] %>
+    <div class="toast"><%= flash[:notice] %></div>
+<% end %>
+
+<div class="col-6">
+  <%= form_tag '/login', class: "form-group" do %>
+
+    Email: <%= text_field_tag :email %>
+    Password: <%= password_field_tag :password %>
+    <%= submit_tag "Submit", class: "btn" %>
+  <% end %>
+  
+  <a href="/signup" class="btn btn-link user-status">...or Sign Up</a>
+
+</div>
