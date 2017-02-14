@@ -33,7 +33,7 @@
           <% if read_status(link) %>
             <td class="link"><button class="btn read-status mark-as-read <%= link.url %>", id="<%= link.title.parameterize %>-switch">Mark as Read (Currently: <%= read_status(link) %>)</button></td>
           <% else %>
-            <td class="link"><button class="btn read-status mark-as-read", id="<%= link.title.parameterize %>-switch">Mark as Unread (Currently: <%= read_status(link) %>)</button></td>
+            <td class="link"><button class="btn read-status disabled", id="<%= link.title.parameterize %>-switch">Currently: <%= read_status(link) %></button></td>
           <% end %>
         </tr>
         <% end %>
