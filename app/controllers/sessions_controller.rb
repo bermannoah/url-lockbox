@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
       redirect_to '/'
       flash[:notice] = "Welcome! You've successfully logged in."
     else
-      flash[:notice] = "You've entered something wrong. Try again?"
       redirect_to '/login'
+      flash[:notice] = "You've entered something wrong. Try again?"
     end
   end
   
